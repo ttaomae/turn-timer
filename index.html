@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Turn Timer</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="turn-timer.css">
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script defer
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script defer src="kotlin.js"></script>
+    <script defer src="turn-timer.js"></script>
+  </head>
+  <body class="h-100 d-flex flex-column">
+    <div class="jumbotron text-center p-2 mb-2">
+      <span id="totalTime" class="display-4 time">00:00:00.000</span>
+    </div>
+    <div id="main" class="container d-flex flex-column flex-grow-1">
+      <div class="row" id="namesInput">
+        <form class="col">
+          <button class="btn btn-block btn-primary pb-2" id="addPlayerButton" type="button">Add Player</button>
+          <div id="playerNames"></div>
+          <button class="btn btn-block btn-success d-none" id="doneButton" type="button">Done</button>
+        </form>
+      </div>
+      <div class="row d-none" id="timer">
+        <table id="players" class="table col">
+          <thead class="thead-dark">
+            <tr>
+              <th id="currentPlayer">Current Player</th>
+              <th id="currentTime" class="text-right time">00:00:00.000</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="row flex-grow-1 pb-2">
+        <button class="btn btn-block btn-success d-none" id="startButton">Start</button>
+        <button class="btn btn-block btn-primary d-none" id="nextButton">Next</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-block btn-danger d-none" id="stopButton">Stop</button>
+      </div>
+    </div>
+    <canvas id="result" width="400" height="400"></canvas>
+  </body>
+</html>
