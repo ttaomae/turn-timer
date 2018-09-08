@@ -1,6 +1,7 @@
 group 'ttaomae'
 version '0.1.0-SNAPSHOT'
 
+
 buildscript {
     ext.kotlin_version = '1.2.61'
 
@@ -21,3 +22,39 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
+
+task assembleWeb(type: Sync) {
+    // Extract kotlin.js
+    configurations.compile.each { File file ->
+        from(zipTree(file.absolutePath), {
+            includeEmptyDirs = false
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                (path.startsWith("META-INFO/resources") || !path.startsWith("Meta-INF/")) &&
+                        path.endsWith(".js")
+
+            }
+        })
+    }
+
+    // Copy compiled kotlin files
+    from compileKotlin2Js.destinationDir
+    // Copy resources
+    from sourceSets.main.resources
+    // Exclude metadata files and empty directories
+    exclude "**/*.meta.js"
+    exclude "**/*.kjsm"
+    includeEmptyDirs = false
+
+    // Output to web directory
+    into "$projectDir/web"
+
+    dependsOn classes
+}
+
+task cleanWeb(type: Delete) {
+    delete "web"
+}
+
+assemble.dependsOn assembleWeb
+clean.dependsOn cleanWeb

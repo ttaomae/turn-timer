@@ -1,0 +1,36 @@
+.time,
+.player-time {
+    font-family: monospace;
+}
+
+/* Experimentally determined to approximately fill with of viewport. */
+#totalTime {
+    font-size: 10vw;
+}
+
+#addPlayerButton,
+#doneButton {
+    font-size: 2em;
+}
+
+#playerNames {}
+
+table#players tr th {
+    font-size: 3em;
+}
+
+table#players tr td {
+    font-size: 2em;
+}
+
+.current-player {
+    font-weight: bold;
+}
+
+#startButton,
+#nextButton {
+    font-size: 5em;
+}
+#stopButton {
+    font-size: 2em;
+}
